@@ -1,0 +1,90 @@
+<div class="container p_tb_85">
+    <div class="job_detailcard border_box wow fadeInUp" data-wow-duration="800ms">
+        <h6 class="jobtitle">Time Tracking</h6>
+        <p class="job-explination">Explination of why this is important and all that good stuff</p>
+        <div class="jobdetail_inner_card" >
+            <div>
+                <p class="log-hours">Log Hours</p>
+                <p>Loggin hours for the week of {{standard_current_week | date:'MMM dd yyyy'}}</p>
+                <div *ngIf="successMsg" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <p class="alertMsg">{{successMsg}}</p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div *ngIf="errMsg" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <p class="alertMsg">{{errMsg}}</p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Charge Code </th>
+                            <th *ngFor="let day of days; let i = index">{{day}} ({{ start_day + i | ordinal}})</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngIf="rows.length > 0">
+                            <tr *ngFor="let row of rows; let i = index">
+                                <td>
+                                    <input maxlength="3" type="text"  class="form-control border_white" value="{{row}}">
+                                </td>
+                                <td *ngFor="let day of days; let j = index">
+                                    <input maxlength="3" type="text" *ngIf="info" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" value="{{info[row][j].hours}}" class="form-control border_white input_box50" id="{{i}}_{{day}}" (input)="inputCharge($event, i, j)">
+                                    <i *ngIf="info[row][j].comments" class="material-icons comment_btn" data-toggle="modal" data-target="#chargecodeid" (click)="showComment($event, i, j)">message</i>
+                                </td>
+                            </tr>
+                        </ng-container>
+
+                        <tr *ngIf="chargeCodeLists!=''">
+                            <td >
+                                <mat-form-field class="" >
+                                    <mat-label>New Charge Code</mat-label>
+                                    <mat-select [ngModel]="selectedchargecode" (ngModelChange)="selectChargeCode($event)">
+                                        <mat-option *ngFor="let chargeCode of chargeCodeLists; let i=index"  [value]="chargeCode.value">
+                                            {{chargeCode.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>  
+                            </td>
+                            <!-- <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Comments on hours for charge code. Please click the hours</p>
+            <div *ngIf="editableComment" class="row p_t_15 wow fadeInUp" data-wow-duration="800ms">
+                <mat-form-field class="col-sm-12">
+                    <textarea id="comment_area" matInput placeholder="I need to do some surge support for Charlie so switched gears" (input)="inputComment($event)"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="row text-right wow fadeInUp" data-wow-duration="800ms">
+                <button mat-raised-button color="accent" (click)="saveData()" class="log_btn" style="margin-bottom: 0px!important">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="chargecodeid">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row p_t_15 wow fadeInUp" data-wow-duration="800ms">
+                    <input class="modal-input" [ngModel]="commentContent" (input)="updateComment($event)">
+                </div>
+                <div class="row p_t_15 wow fadeInUp" data-wow-duration="800ms">
+                    <button data-dismiss="modal" mat-raised-button color="accent"  class="log_btn" style="margin-bottom: 0px!important">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    

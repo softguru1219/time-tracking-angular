@@ -1,0 +1,109 @@
+<div class="container p_tb_85">
+    <div class="row">
+        <div class="col-sm-9"> </div>
+        <mat-form-field class="col-sm-3">
+            <mat-label>Viewing hours for the week of </mat-label>
+            <mat-select [ngModel]="selectedWeek">
+                <mat-option *ngFor="let week of weeks" [value]="week.value" (click)="onWeek(week.start_date, week.end_date)">
+                    {{week.start_date | date:'MMM dd'}} - {{week.end_date | date:'MMM dd yyyy'}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="job_detailcard border_box wow fadeInUp" data-wow-duration="800ms">
+                <h6 class="jobtitle">Charge Code Summary</h6>
+                <div class="jobdetail_inner_card" >
+                    <div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Charge Code </th>
+                                    <th>Hours</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let key of view_1 | keyvalue">
+                                    <td>{{key}}</td>
+                                    <td>{{view_1[key]}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="job_detailcard border_box wow fadeInUp" data-wow-duration="800ms">
+                <h6 class="jobtitle">Employee Summary</h6>
+                <div class="jobdetail_inner_card" >
+                    <div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Employee </th>
+                                    <th>Hours</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let key of view_2 | keyvalue">
+                                    <td>{{key}}</td>
+                                    <td>{{view_2[key]}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="job_detailcard border_box wow fadeInUp" data-wow-duration="800ms">
+        <h6 class="jobtitle">Employee Detailed Summery</h6>
+        <div class="jobdetail_inner_card" >
+            <ng-container *ngFor="let v of view_3">
+                <h5 class="tracktable_title" *ngIf="v.user">
+                    Viewing {{v.user.full_name}}'s hours for the week of {{seleted_weekStart | date:'MMM dd'}} - {{seleted_weekEnd | date:'MMM dd yyyy'}}
+                </h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Charge Code </th>
+                            <th *ngFor="let day of days; let i = index">{{day}} ({{ start_day + i | ordinal}})</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let key of v.info | keyvalue">
+                            <td>{{key}}</td>
+                            <ng-container *ngFor="let item of v.info[key]">
+                                <td>
+                                    <p class="manager-hours">{{item.hours}}</p>
+                                    <i *ngIf="item.comments" class="material-icons manager_comment_btn" data-toggle="modal" data-target="#chargecodeid" (click)="commentClick(item.comments)">message</i>
+                                </td>
+                            </ng-container>
+                        </tr>   
+                    </tbody>
+                </table>
+            </ng-container>
+            <div class="row text-right wow fadeInUp" data-wow-duration="800ms">
+                <button mat-raised-button color="accent" class="log_btn" style="margin-bottom: 0px!important;margin-top: 0px!important">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="chargecodeid">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row p_t_15 wow fadeInUp" data-wow-duration="800ms">
+                    <p style="padding: 0px 20px;margin: 0px;">
+                        {{selectedComment}}
+                    </p>
+                </div>
+                <div class="row p_t_15 wow fadeInUp" data-wow-duration="800ms">
+                    <button data-dismiss="modal" mat-raised-button color="accent"  class="log_btn" style="margin-bottom: 0px!important">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-5 login_bg wow slideInLeft" data-wow-duration="800ms"></div>
+        <div class="col-sm-7">
+            <div class="login_card wow slideInRight" data-wow-duration="1000ms">
+                <div>
+                <!-- <form > -->
+                    <h1 class="login_title wow infinite bounce delay-2s">Login</h1>
+                    <div *ngIf="errMsg" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <p class="alertMsg">{{errMsg}}</p>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <mat-form-field class="col-sm-12">
+                            <input matInput placeholder="Enter your username" [(ngModel)]="username">
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <mat-form-field class="col-sm-12">
+                        <input type="password" matInput placeholder="Enter your Password" [(ngModel)]="pass">
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <button mat-raised-button color="accent" (click)="LoginClick()" class="log_btn">Sign In</button>
+                    </div>  
+                    <div class="row">
+                        <p class="p_l_15 f_13">Don't Have an Account click here <span class="donthave_ac cursor_pointer" (click)="registerClick()">Sign Up</span></p>
+                    </div>                   
+                <!-- </form> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

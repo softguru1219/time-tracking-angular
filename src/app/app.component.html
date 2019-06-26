@@ -1,0 +1,116 @@
+<div class="" *ngIf="this.route!='/login' && this.route!='/register' && this.route!='/manager-login' && this.route!=''">
+    
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark top_menu wow fadeInUp" data-wow-duration="800ms">
+          <a class="navbar-brand text-white" >Time Tracker</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <!-- <ul class="navbar-nav mr-auto sidenav fmr_menu" id="navAccordion"> -->
+              <!-- <li class="nav-item active">
+                <a class="nav-link" href="#">
+                    <i class="material-icons"> home</i>
+                  Home <span class="sr-only">(current)</span></a>
+  
+  
+              </li>
+              <li class="nav-item"><a class="nav-link">
+                  <i class="material-icons"> home</i>
+                New Messages</a></li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-collapse"
+                  href="#"
+                  id="hasSubItems"
+                  data-toggle="collapse"
+                  data-target="#collapseSubItems2"
+                  aria-controls="collapseSubItems2"
+                  aria-expanded="false"
+                >
+                <i class="material-icons"> home</i>
+                Jobs Details</a>
+                <ul class="nav-second-level collapse" id="collapseSubItems2" data-parent="#navAccordion">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <span class="nav-link-text">Post Job</span>
+                    </a>
+                  </li>
+                  <li class="nav-item dropdown ">
+                    <a class="nav-link" href="#"><span class="nav-link-text" data-toggle="dropdown">Discover Jobs</span></a>
+  
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">Link 1</a>
+                      <a class="dropdown-item" href="#">Link 2</a>
+                      <a class="dropdown-item" href="#">Link 3</a>
+                    </div>
+  
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"><span class="nav-link-text">Proposal</span></a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="material-icons"> home</i>
+                  My Events</a>
+              </li>
+  
+              <li class="nav-item"><a class="nav-link" href="#">
+                  <i class="material-icons"> home</i>
+                Profile</a> </li>
+              <li class="nav-item"><a class="nav-link" href="#">
+                  <i class="material-icons"> home</i>
+                Reports</a> </li>
+              <li class="nav-item"><a class="nav-link" href="#">
+                  <i class="material-icons"> home</i>
+                Settings</a> </li>
+            </ul> -->
+            <form class="form-inline ml-auto mt-2 mt-md-0">
+  
+  
+              <div class="dropdown custom-drop">
+             <span class="profilename text-white" data-toggle="dropdown" role="button" data-toggle="dropdown">Amal AR</span> 
+              <span data-toggle="dropdown" role="button" data-toggle="dropdown">
+                <img class="pulse-button userlogo" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/173024/jonathanlarradet_copy.png">
+              </span>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" routerLink='/myaccount'>My Account</a>
+                  <a class="dropdown-item" href="#">Settings</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" (click)="logout()">Log out</a>
+                </div>
+              </div>
+  
+  
+            </form>
+          </div>
+        </nav>
+        
+        <!-- <main class="content-wrapper">
+          <div class="container-fluid">
+            <h1>Main Content</h1>
+          </div>
+        </main> -->
+        
+        <!-- <footer class="footer">
+          <div class="container">
+              <div class="text-center">
+                  <span>Copyright <a href=""></a>, 2019</span>
+              </div>
+          </div>
+        </footer> -->
+  
+  </div>
+  
+  <router-outlet></router-outlet>
+      

@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-5 login_bg wow slideInLeft" data-wow-duration="800ms"></div>
+        <div class="col-sm-7">
+            <div class="login_card wow slideInRight" data-wow-duration="1000ms">
+                <div>
+                    <form [formGroup]="signup">
+                        <h1 class="login_title wow infinite bounce delay-2s">Register</h1>
+                        <div *ngIf="errMsg" class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <p class="alertMsg">{{errMsg}}</p>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="row">
+                            <mat-form-field class="col-sm-12">
+                                <input formControlName="full_name" matInput placeholder="Enter your Name" >
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <mat-form-field class="col-sm-12">
+                                <input formControlName="uname" matInput placeholder="Enter your User Name" >
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <mat-form-field class="col-sm-12">
+                                <input matInput placeholder="Enter your email" formControlName="email">
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <mat-form-field class="col-sm-12">
+                                <input type="password" matInput placeholder="Enter your Password" formControlName="password">
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <mat-form-field class="col-sm-12">
+                                <input type="password" matInput placeholder="Enter your confirm Password" formControlName="confirmpassword">
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <button [disabled]="signup.invalid" mat-raised-button color="accent" class="log_btn" (click)="RegisterClick()">Sign Up</button>
+                        </div>  
+                        <div class="row">
+                            <p class="p_l_15 f_13">Already Have an Account click here <span class="donthave_ac cursor_pointer" (click)="loginClick()">Sign In</span></p>
+                        </div>                   
+                    </form>
+                </div>              
+            </div>
+        </div>
+    </div>
+</div>
